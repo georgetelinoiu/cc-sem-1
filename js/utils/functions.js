@@ -1,5 +1,5 @@
 // js/utils/functions.js
-import {connectToDatabase,} from '@/lib/mongodb.js';
+import {connectToDhatabase,} from '@/lib/mongodb.js';
 
 export const getCollection = async collectionName => {
 	const {database,} = await connectToDatabase();
