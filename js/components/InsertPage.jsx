@@ -30,7 +30,7 @@ export default function InsertPage() {
 		setLoading(true);
 		const response = await openai.createCompletion({
 			model: "text-davinci-003",
-			prompt: `I want you to act as a poet. You will create poems that evoke emotions and have the power to stir people’s soul. Write on the topic or theme of ${poemType} but make sure your words convey the feeling you are trying to express in beautiful yet meaningful ways. You can also come up with short verses that are still powerful enough to leave an imprint in readers’ minds. The poem should be from ${name1} to ${name2}. Maximum 2 verses per poem, nothing more`,
+			prompt: `I want you to act as a poet. You will create a poem that evoke emotions and have the power to stir people’s soul. Write on the topic or theme of ${poemType} but make sure your words convey the feeling you are trying to express in beautiful yet meaningful ways. You can only come up with short verses that are still powerful enough to leave an imprint in readers’ minds. The poem should be from ${name1} to ${name2}. Maximum 4 verses.`,
 			temperature: 0.9,
 			max_tokens: 150,
 			top_p: 1,
@@ -46,23 +46,35 @@ export default function InsertPage() {
 		setPoemSaved(true);
 	};
 
-	const handlePoemSave = async (poem) => {
-		console.log(poem);
-		const url = '/api/records'; 
-		const options = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({"poem" : poem})
-		};
-		const result = await fetch(url, options);
-		console.log(result);
+	const handlePoemSave = async () => {
+		if (poem != "" || poem != null) {
+			const data = {
+				sender: name1,
+				receiver: name2,
+				poem: poem,
+				type: poemType
+			};
+			console.log(data);
+	
+			fetch('/api/records', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			}).then( () => {
+					console.log("A records has been uploaded")
+			} );
+		}
+		else {
+			alert ("Please generate a poem first!");
+		}
+		
 	}
 
 	return (
 		<div className="container mx-auto mt-8">
-			<h1 className="text-3xl font-bold mb-4">Generate a Poem</h1>
+			<h1 className="flex justify-center text-3xl font-bold mb-4">Generate a Poem</h1>
 
 			<div className="text-black flex flex-col items-center justify-center space-y-4">
 				<div className="flex flex-col">
@@ -89,10 +101,10 @@ export default function InsertPage() {
 						className="border border-gray-300 rounded-md px-3 py-2 w-72"
 					>
 						<option value="">Select poem type</option>
-						<option value="dragoste">Dragoste</option>
-						<option value="comedie">Comedie</option>
-						<option value="tragedie">Tragedie</option>
-						<option value="drama">Drama</option>
+						<option value="Love">Love</option>
+						<option value="Comedy">Comedy</option>
+						<option value="Tragedy">Tragedy</option>
+						<option value="Drama">Drama</option>
 					</select>
 				</div>
 
@@ -120,12 +132,13 @@ export default function InsertPage() {
 					</button>
 				</div>
 				<div>
-					{poem && <pre className='text-white'>{poem}</pre>}
+					{poem && <pre id="poem" className='text-white'>{poem}</pre>}
 				</div>
 				<button
+						
 						className="text-white border border-gray-100 rounded-md"
 						type="button"
-						onClick={handlePoemSave(poem)}
+						onClick={() => handlePoemSave()}
 					>
 						Save poem
 					</button>
