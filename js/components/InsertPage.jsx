@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Configuration, OpenAIApi } from "openai";
 
-
 export default function InsertPage() {
 	const [name1, setName1] = useState('');
 	const [name2, setName2] = useState('');
@@ -25,6 +24,7 @@ export default function InsertPage() {
 	const handlePoemTypeChange = (event) => {
 		setPoemType(event.target.value);
 	};
+
 
 	const handleGeneratePoem = async () => {
 		setLoading(true);
@@ -55,21 +55,21 @@ export default function InsertPage() {
 				type: poemType
 			};
 			console.log(data);
-	
+
 			fetch('/api/records', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(data)
-			}).then( () => {
-					console.log("A records has been uploaded")
-			} );
+			}).then(() => {
+				console.log("A records has been uploaded");
+				window.location.replace('/');
+			});
 		}
 		else {
-			alert ("Please generate a poem first!");
+			alert("Please generate a poem first!");
 		}
-		
 	}
 
 	return (
@@ -123,7 +123,7 @@ export default function InsertPage() {
 
 				<div>
 					<button
-						className="text-white border rounded-md"
+						className="text-white border rounded-md px-4 py-2 text-lg"
 						type="button"
 						onClick={handleGeneratePoem}
 						disabled={loading || !poemType || !name1 || !name2}
@@ -135,13 +135,13 @@ export default function InsertPage() {
 					{poem && <pre id="poem" className='text-white'>{poem}</pre>}
 				</div>
 				<button
-						
-						className="text-white border border-gray-100 rounded-md"
-						type="button"
-						onClick={() => handlePoemSave()}
-					>
-						Save poem
-					</button>
+					className="text-white border border-gray-100 rounded-md px-4 py-2 text-lg"
+					type="button"
+					onClick={() => handlePoemSave()}
+					disabled={loading || !poem}
+				>
+					Save poem
+				</button>
 			</div>
 		</div>
 	);
