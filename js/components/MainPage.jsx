@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from 'next/link';
+import PoemDetails from "./PoemDetails";
 
 export default function MainPage() {
     const [records, setRecords] = useState([]);

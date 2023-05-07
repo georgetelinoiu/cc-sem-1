@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Configuration, OpenAIApi } from "openai";
+import { useRouter } from 'next/router';
 
 export default function InsertPage() {
 	const [name1, setName1] = useState('');
@@ -25,6 +26,7 @@ export default function InsertPage() {
 		setPoemType(event.target.value);
 	};
 
+	const router = useRouter();
 
 	const handleGeneratePoem = async () => {
 		setLoading(true);
@@ -72,8 +74,16 @@ export default function InsertPage() {
 		}
 	}
 
+	function handleClick() {
+		router.back();
+	}
+
 	return (
 		<div className="container mx-auto mt-8">
+			<button
+				className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mr-4 text-lg"
+				onClick={handleClick}
+			>Go Back</button>
 			<h1 className="flex justify-center text-3xl font-bold mb-4">Generate a Poem</h1>
 
 			<div className="text-black flex flex-col items-center justify-center space-y-4">
@@ -127,18 +137,27 @@ export default function InsertPage() {
 						type="button"
 						onClick={handleGeneratePoem}
 						disabled={loading || !poemType || !name1 || !name2}
+						title={loading || !poemType || !name1 || !name2 ? "Completeaza toate campurile inainte de a genera poezia!" : ""}
 					>
-						{loading ? "Generating..." : "Generate a poem"}
+						{loading ? (
+							<>
+								<span className="mr-2">Generating...</span>
+								<span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+							</>
+						) : (
+							"Generate a poem"
+						)}
 					</button>
 				</div>
 				<div>
 					{poem && <pre id="poem" className='text-white'>{poem}</pre>}
 				</div>
 				<button
-					className="text-white border border-gray-100 rounded-md px-4 py-2 text-lg"
+					className="text-white border border-gray-100 rounded-md px-4 py-2 text-lg mb-20"
 					type="button"
 					onClick={() => handlePoemSave()}
 					disabled={loading || !poem}
+					title={loading || !poem ? "Trebuie sa generezi o poezie inainte de a o salva!" : ""}
 				>
 					Save poem
 				</button>
