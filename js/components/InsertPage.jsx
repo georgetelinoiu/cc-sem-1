@@ -149,8 +149,17 @@ export default function InsertPage() {
 						)}
 					</button>
 				</div>
-				<div>
-					{poem && <pre id="poem" className='text-white'>{poem}</pre>}
+				<div class="sm:text-base md:text-lg lg:text-xl">
+					<div class="mx-4 sm:mx-6 md:mx-8 lg:mx-10">
+						{poem && (
+							<pre
+								id="poem"
+								class="text-white bg-transparent whitespace-pre-wrap"
+							>
+								{poem}
+							</pre>
+						)}
+					</div>
 				</div>
 				<button
 					className="text-white border border-gray-100 rounded-md px-4 py-2 text-lg mb-20"
