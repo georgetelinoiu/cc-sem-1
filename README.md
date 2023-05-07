@@ -14,8 +14,9 @@ OpenAI API: un API care furnizează unelte de inteligență artificială pentru 
 
 Vercel: o platformă de cloud care oferă funcționalități de deploy și hosting pentru aplicații web.
 
-Detalii despre aplicație
+Detalii despre aplicație:
 Aplicația oferă utilizatorilor posibilitatea de a genera poezii personalizate, prin introducerea unor informații de baza. Utilizatorii trebuie să introducă informații cum ar fi persoana către care este adresată poezia, tipul de poezie si numele propriu. Apoi, aplicația generează poezia și o afișează utilizatorului, care poate alege să o salveze în baza de date.
+
 Pagina principală a aplicației conține o listă cu toate poeziile generate de utilizatori, care pot fi vizualizate și șterse. Aceasta oferă o modalitate simplă și eficientă de a gestiona poeziile generate de utilizatorii aplicației.
 
 ![image](https://user-images.githubusercontent.com/81044083/236695204-c66ba181-5f1f-4b0b-8b62-000ce96d3f9a.png)
