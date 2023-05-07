@@ -7,8 +7,11 @@ Descriere tehnologii cloud folosite
 Pentru dezvoltarea proiectului Generarea de Poezii, au fost utilizate următoarele tehnologii cloud:
 
 Next.js: un framework de React care permite dezvoltatorilor să creeze aplicații web și mobile.
+
 MongoDB: o bază de date NoSQL care oferă o scalabilitate orizontală și verticală.
+
 OpenAI API: un API care furnizează unelte de inteligență artificială pentru dezvoltatori.
+
 Vercel: o platformă de cloud care oferă funcționalități de deploy și hosting pentru aplicații web.
 
 Detalii despre aplicație
