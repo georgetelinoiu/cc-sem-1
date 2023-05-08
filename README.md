@@ -1,5 +1,5 @@
 Poem Generator, Telinoiu Nicolae Georgian, 1121<br />
-Link video:
+Link video:<br />
 Link publicare: https://github.com/georgetelinoiu/cc-sem-1<br />
 Documentația proiectului - Poem generator<br />
 
