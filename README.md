@@ -1,7 +1,7 @@
-Poem Generator, Telinoiu Nicolae Georgian, 1121
+Poem Generator, Telinoiu Nicolae Georgian, 1121<br />
 Link video:
-Link publicare: https://github.com/georgetelinoiu/cc-sem-1
-Documentația proiectului - Poem generator
+Link publicare: https://github.com/georgetelinoiu/cc-sem-1<br />
+Documentația proiectului - Poem generator<br />
 
 **Introducere**\n
 Această documentație prezintă detaliile proiectului. Acesta este un proiect de aplicație web care permite utilizatorilor să genereze poezii prin intermediul unui API furnizat de OpenAI. Proiectul a fost dezvoltat utilizând tehnologii cloud. Aplicația permite utilizatorilor să creeze poezii personalizate, să le salveze și să le vizualizeze într-o listă.
