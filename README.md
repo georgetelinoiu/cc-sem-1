@@ -1,20 +1,65 @@
+Poem Generator, Telinoiu Nicolae Georgian, 1121
+Link video:
+Link publicare: https://github.com/georgetelinoiu/cc-sem-1
 Documentația proiectului - Poem generator
 
-Introducere
+**Introducere**
 Această documentație prezintă detaliile proiectului. Acesta este un proiect de aplicație web care permite utilizatorilor să genereze poezii prin intermediul unui API furnizat de OpenAI. Proiectul a fost dezvoltat utilizând tehnologii cloud. Aplicația permite utilizatorilor să creeze poezii personalizate, să le salveze și să le vizualizeze într-o listă.
 
-Descriere tehnologii cloud folosite
+**Descriere problemă**
+Dorim sa facem mai simpla dedicarea unei poezii din suflet catre o persoana pretuita de noi.
+
+**Descriere API**
+API-ul utilizat pentru backend este unul simplu, ce ofera capabilitati de get/post/delete intr-o baza de date NOSQL.
+
+**Flux de date**
+Utilizatorul trebuie sa introduca in aplicatie doua nume (de la cine vine poemul si catre cine este adresat) si sa aleaga tipul de poezie.
+In urma alegerii, un API Call catre OpenAI este facut, cu un promt special conceput pentru a obtine o poezie.
+Prompt-ul arata asa: `I want you to act as a poet. You will create a poem that evoke emotions and have the power to stir people’s soul. Write on the topic or theme of ${poemType} but make sure your words convey the feeling you are trying to express in beautiful yet meaningful ways. You can only come up with short verses that are still powerful enough to leave an imprint in readers’ minds. The poem should be from ${name1} to ${name2}. Maximum 4 verses.`, unde poemType este tipul de poezie, name1 este primul nume scris de utilizator iar name2 este al doilea nume scris de utilizator.
+Doar in urma completarii tuturor campurilor, utilizatorul poate apasa butonul de "Generate".
+In urma generarii, se deblocheaza butonul de "Save", care salveaza in baza de date poezia (prin intermediul unui alt API Call de POST) generata si o afiseaza in pagina principala, in coada listei.
+Din pagina principala se poate sterge orice poezie folosind butonul "Delete".
+
+**Exemple de Request/Response, metode HTTP si autorizare servicii**
+API Call-ul catre OpenAI, folosind biblioteca lor:
+const response = await openai.createCompletion({
+			model: "text-davinci-003",
+			prompt: `I want you to act as a poet. You will create a poem that evoke emotions and have the power to stir people’s soul. Write on the topic or theme of ${poemType} but make sure your words convey the feeling you are trying to express in beautiful yet meaningful ways. You can only come up with short verses that are still powerful enough to leave an imprint in readers’ minds. The poem should be from ${name1} to ${name2}. Maximum 4 verses.`,
+			temperature: 0.9,
+			max_tokens: 150,
+			top_p: 1,
+			frequency_penalty: 0.0,
+			presence_penalty: 0.6,
+			stop: [" Human:", " AI:"],
+		});
+In urma obtinerii datelor, acestea se afiseaza in pagina.
+Pentru utilizarea acestui API, este configurata **cheia de access** prin intermediul unui obiect de configurare, la inceputul functiei paginii principale:
+const configuration = new Configuration({
+		apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+	});
+	const openai = new OpenAIApi(configuration);
+NEXT_PUBLIC_OPENAI_API_KEY este stocata in fisierul .env, ce nu este incarcat pe github din motive de securitate.
+
+**Exemplu de request POST catre backend (Metoda HTTP de tipul POST):**
+fetch('/api/records', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			}).then(() => {
+				console.log("A records has been uploaded");
+				window.location.replace('/');
+			});
+
+**Descriere tehnologii cloud folosite**
 Pentru dezvoltarea proiectului Generarea de Poezii, au fost utilizate următoarele tehnologii cloud:
-
 Next.js: un framework de React care permite dezvoltatorilor să creeze aplicații web și mobile.
-
 MongoDB: o bază de date NoSQL care oferă o scalabilitate orizontală și verticală.
-
 OpenAI API: un API care furnizează unelte de inteligență artificială pentru dezvoltatori.
-
 Vercel: o platformă de cloud care oferă funcționalități de deploy și hosting pentru aplicații web.
 
-Detalii despre aplicație:
+**Detalii despre aplicație:**
 Aplicația oferă utilizatorilor posibilitatea de a genera poezii personalizate, prin introducerea unor informații de baza. Utilizatorii trebuie să introducă informații cum ar fi persoana către care este adresată poezia, tipul de poezie si numele propriu. Apoi, aplicația generează poezia și o afișează utilizatorului, care poate alege să o salveze în baza de date.
 
 Pagina principală a aplicației conține o listă cu toate poeziile generate de utilizatori, care pot fi vizualizate și șterse. Aceasta oferă o modalitate simplă și eficientă de a gestiona poeziile generate de utilizatorii aplicației.
