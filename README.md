@@ -1,5 +1,5 @@
 Poem Generator, Telinoiu Nicolae Georgian, 1121<br />
-Link video:<br />
+Link video:https://youtu.be/EdFHyigy1fM<br />
 Link publicare: https://github.com/georgetelinoiu/cc-sem-1<br />
 Documentația proiectului - Poem generator<br />
 
@@ -60,7 +60,7 @@ OpenAI API: un API care furnizează unelte de inteligență artificială pentru 
 Vercel: o platformă de cloud care oferă funcționalități de deploy și hosting pentru aplicații web.
 
 **Detalii despre aplicație:**<br />
-Aplicația oferă utilizatorilor posibilitatea de a genera poezii personalizate, prin introducerea unor informații de baza. Utilizatorii trebuie să introducă informații cum ar fi persoana către care este adresată poezia, tipul de poezie si numele propriu. Apoi, aplicația generează poezia și o afișează utilizatorului, care poate alege să o salveze în baza de date.
+Aplicația este de tip SaaS (Software as a Service), oferind utilizatorilor posibilitatea de a genera poezii personalizate, prin introducerea unor informații de baza. Utilizatorii trebuie să introducă informații cum ar fi persoana către care este adresată poezia, tipul de poezie si numele propriu. Apoi, aplicația generează poezia și o afișează utilizatorului, care poate alege să o salveze în baza de date. Arhitectura aplicatiei este bazata pe Cloud Computing, astfel toate datele si functionalitatile prezentate sunt stocate si accesate pe internet.
 
 Pagina principală a aplicației conține o listă cu toate poeziile generate de utilizatori, care pot fi vizualizate și șterse. Aceasta oferă o modalitate simplă și eficientă de a gestiona poeziile generate de utilizatorii aplicației.
 
