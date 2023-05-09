@@ -4,6 +4,11 @@ import PoemDetails from "./PoemDetails";
 
 export default function MainPage() {
     const [records, setRecords] = useState([]);
+    const [selectedPoem, setSelectedPoem] = useState(null);
+
+    const handlePoemClick = (poem) => {
+        setSelectedPoem(poem);
+    };
 
     useEffect(() => {
         try {
@@ -77,10 +82,34 @@ export default function MainPage() {
                                 >
                                     Delete
                                 </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handlePoemClick(record)}
+                                    className="focus:outline-none text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 md:px-5 py-2.5 mr-2 mb-2"
+                                >
+                                    Details
+                                </button>
                             </div>
                         </div>
                     ))}
                 </div>
+                <div className="overflow-y-auto h-screen">
+                    {selectedPoem && (
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                            <div className="bg-white rounded-lg w-1/2 md:w-1/3 lg:w-1/4 mx-auto p-4 md:p-6 max-h-screen overflow-y-scroll">
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-lg mt-4"
+                                    onClick={() => setSelectedPoem(null)}
+                                >
+                                    Close
+                                </button>
+                                <PoemDetails poem={selectedPoem} />
+                            </div>
+                        </div>
+
+                    )}
+                </div>
+
             </div>
         </section>
 
