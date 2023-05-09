@@ -96,7 +96,7 @@ export default function MainPage() {
                 <div className="overflow-y-auto h-screen">
                     {selectedPoem && (
                         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                            <div className="bg-white rounded-lg w-1/2 md:w-1/3 lg:w-1/4 mx-auto p-4 md:p-6 max-h-screen overflow-y-scroll">
+                            <div className="bg-white rounded-lg w-3/4 mx-auto p-4 md:p-6 max-h-screen overflow-y-scroll">
                                 <button
                                     className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-lg mt-4"
                                     onClick={() => setSelectedPoem(null)}
