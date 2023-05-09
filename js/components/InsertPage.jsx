@@ -34,7 +34,7 @@ export default function InsertPage() {
 			model: "text-davinci-003",
 			prompt: `I want you to act as a poet. You will create a poem that evoke emotions and have the power to stir people’s soul. Write on the topic or theme of ${poemType} but make sure your words convey the feeling you are trying to express in beautiful yet meaningful ways. You can only come up with short verses that are still powerful enough to leave an imprint in readers’ minds. The poem should be from ${name1} to ${name2}. Maximum 4 verses.`,
 			temperature: 0.9,
-			max_tokens: 150,
+			max_tokens: 300,
 			top_p: 1,
 			frequency_penalty: 0.0,
 			presence_penalty: 0.6,
