@@ -1,6 +1,7 @@
 Poem Generator, Telinoiu Nicolae Georgian, 1121<br />
 Link video:https://youtu.be/EdFHyigy1fM<br />
 Link publicare: https://github.com/georgetelinoiu/cc-sem-1<br />
+Link deploy: https://poem-generator-eight.vercel.app/ <br />
 Documentația proiectului - Poem generator<br />
 
 **Introducere**<br />
